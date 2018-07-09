@@ -168,7 +168,7 @@ In order for us to identify your submission as being from your organisation, you
 SubmittingParty:    
 
 - Reference: This value is your unique reference for the submission
-- Source: This value will br the name of your organisation (content to be agreed)
+- Source: This value will be the name of your organisation (content to be agreed)
 - Medium: This value should be set to `affiliate`
 - Campaign: This value represents our code for submissions from you. You may have multiple campaigns, but these must be agreed with us before use.
 

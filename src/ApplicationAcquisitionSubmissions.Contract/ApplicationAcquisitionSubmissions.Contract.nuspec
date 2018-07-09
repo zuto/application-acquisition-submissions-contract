@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>ApplicationAcquisitionSubmissions.Contract</id>
+    <version>1.0.0.0</version>
+    <owners>Zuto</owners>
+    <authors>Acquisition</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contracts for Application Acquisition Submissions</description>
+    <copyright>Zuto Copyright 2018</copyright>    
+  </metadata>
+  <files>
+    <file src="ApplicationAcquisitionSubmissions.Contract.dll" target="lib\net452" />
+    <file src="ApplicationAcquisitionSubmissions.Contract.pdb" target="lib\net452" />    
+  </files>
+</package>

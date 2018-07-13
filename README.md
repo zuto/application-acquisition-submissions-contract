@@ -246,13 +246,13 @@ e.g.
 ### FullApplication-Applicants-MarketingOptIn
 
 ```diff
-+ Api Affiliates do not need to populate the Marketing opt in options. For Api affiliates (as per GDPR requirements), we assume
++ Api Affiliates do not need to populate the Marketing opt in options.
++ For Api affiliates (as per GDPR requirements), we assume
++ ThirdPartyReferral as Opt Out
++ SMS as Opt Out
++ Phone as Opt In
++ Email as Opt In
 ```
-
-- ThirdPartyReferral as Opt Out
-- SMS as Opt Out
-- Phone as Opt In
-- Email as Opt In
 
 Internally, we provide 3 distinct options to allow customers to opt-into marketing communications by Email, Phone or SMS.
 You must provide these details individually, they cannot be bundled together. You must allow a positive opt in and collect the customers preferences by providing 3 distinct opt-in checkboxes on your form.

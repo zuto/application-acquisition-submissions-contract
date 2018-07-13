@@ -82,11 +82,7 @@ Once UAT has been successful, we will agree with you a date to switch over to ou
 
 The fullapplication method allows you to submit an Application.
 
-```diff
-- On sending a submission, we assume that the applicant has agreed to our terms and conditions
-- (as published on our website when an application is made)
-- and will be subjected to certain levels of automatic processing that will include credit searching.
-```
+_On sending a submission, we assume that the applicant has agreed to our terms and conditions, as published on our website when an application is made, and will be subjected to certain levels of automatic processing that will include credit searching._
 
 For this submission type, an applicant might not be contacted by us until they have been approved by one of the lenders on our panel. 
 
@@ -247,11 +243,13 @@ e.g.
 
 ```diff
 + Api Affiliates do not need to populate the Marketing opt in options.
-+ For Api affiliates (as per GDPR requirements), we assume
-+ ThirdPartyReferral as Opt Out
-+ SMS as Opt Out
-+ Phone as Opt In
-+ Email as Opt In
+
+For Api affiliates (as per GDPR requirements), we assume
+
+ThirdPartyReferral as Opt Out
+SMS as Opt Out
+Phone as Opt In
+Email as Opt In
 ```
 
 Internally, we provide 3 distinct options to allow customers to opt-into marketing communications by Email, Phone or SMS.

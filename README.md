@@ -102,16 +102,17 @@ Body:
     "AuthToken": "7C3AFF52-9084-4819-B085-22D5B2FE1F8E", 
     "Redirect":"https://www.zuto.com/summary/", 
     "Reference":"123457",
-    "UserAlreadyExisted": true    
+    "ApplicationAccepted": true    
 }
 ```
 
 - AuthToken: can be ignored, this is used by our internal systems to authenticate a user
 - Redirect: is a link that can be followed for the user to the next stage. 
-    - If the user already has an inflight application, the link will redirect to the account area summary page, which will prompt the user to login as an existing user
-    - If the user is new, a preauthentication link will be returned, which will log the user in, prompt the user to set a password, then redirect to the account area summary page.
+    - If the user already has an existing open application, the link will redirect to the sign in page, which will prompt the user to login as an existing user
+    - If the user already applied but does not have an existing open application, the link will redirect to the sign in page, which will promt user to login as an existing user
+    - If the user is new , a preauthentication link will be returned, which will log the user in, prompt the user to set a password, then redirect to the account area summary page.
 - Reference: is the value sent to us, as the SubmittingPartyReference value
-- UserAlreadyExisted: is an internal field, which describes whether we think a user account already exists.
+- ApplicationAccepted: is an internal field, which describes whether we have accepted the application or not.
 
 [^ Back to Top](#application-acquisition-submissions-contract)
 

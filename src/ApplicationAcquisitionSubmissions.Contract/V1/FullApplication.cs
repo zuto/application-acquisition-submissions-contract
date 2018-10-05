@@ -21,7 +21,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         [ValidateObject(failOnNull: false)]
         public Applicant[] Applicants { get; set; }
         
-        [ValidateObject(failOnNull: false)]
+        [ValidateObject(failOnNull: true)]
         public ApplicationDetails ApplicationDetails { get; set; }
 
         [Required]

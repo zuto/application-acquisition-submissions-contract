@@ -376,7 +376,7 @@ You can supply information about the application
 
 e.g.
 ```
-    "AdditionalInformation": {
+    "ApplicationDetails": {
         "CreditLimit": 10000.00,
         "VehicleType": "CAR",
         "Deposit": null,
@@ -462,7 +462,7 @@ curl -XPOST -H "Content-type: application/json" -d '{"Origin":{"Value":"Api-Affi
             }
         }]        
     }],
-    "AdditionalInformation": {
+    "ApplicationDetails": {
         "CreditLimit": 10000.00,
         "VehicleType": "CAR",
         "Deposit": null,

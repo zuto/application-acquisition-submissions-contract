@@ -26,7 +26,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         public string Medium { get; set; }
 
         [StringLength(255)]
-        [RegularExpression(Regexes.AlphaNumericWithUnderscoreAndDash)]
+        [RegularExpression(Regexes.AlphaNumericWithUnderscoreAndDashAndSpace)]
         public string Campaign { get; set; }
 
         [StringLengthRange(0, 100)]

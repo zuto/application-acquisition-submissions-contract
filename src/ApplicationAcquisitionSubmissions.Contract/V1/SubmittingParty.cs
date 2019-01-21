@@ -4,7 +4,7 @@ using ApplicationAcquisitionSubmissions.Contract.DataAttributes;
 namespace ApplicationAcquisitionSubmissions.Contract.V1
 {
     public class SubmittingParty
-    {                
+    {
         [StringLengthRange(1,50)]
         public string Name { get; set; }
 
@@ -19,10 +19,11 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         public string Reference { get; set; }
 
         [StringLengthRange(1, 255)]
-        [RegularExpression(Regexes.AlphaNumeric)]
+        [RegularExpression(Regexes.AlphaNumericWithUnderscoreAndDashAndSpace)]
         public string Source { get; set; }
 
         [StringLengthRange(1, 255)]
+        [RegularExpression(Regexes.AlphaNumericWithUnderscoreAndDashAndSpace)]
         public string Medium { get; set; }
 
         [StringLength(255)]

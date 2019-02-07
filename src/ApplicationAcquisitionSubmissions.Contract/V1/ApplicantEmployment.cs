@@ -23,7 +23,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         [IntegerRange(0, 11)]
         public int Months { get; set; }
 
-        [MoneyRange(0.01, 99999999)]
+        [MoneyRange(0, 99999999)]
         public decimal? NetMonthlyIncome { get; set; }
 
         [ValidateObject(failOnNull: false)]

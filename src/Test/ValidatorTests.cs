@@ -1,7 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using ApplicationAcquisitionSubmissions.Contract.V1;
+﻿using ApplicationAcquisitionSubmissions.Contract.V1;
 using NUnit.Framework;
+using System.ComponentModel.DataAnnotations;
 
 namespace Test
 {

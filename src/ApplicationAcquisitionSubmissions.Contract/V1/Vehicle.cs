@@ -32,6 +32,6 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         [MoneyRange(0.01, 99999999)]
         public decimal? Value { get; set; }
 
-        public string DealerName { get; set; }
+        public Dealer Dealer { get; set; }
     }
 }

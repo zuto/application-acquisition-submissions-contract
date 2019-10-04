@@ -59,6 +59,7 @@
     <Compile Include="V1\ApplicantEmployment.cs" />
     <Compile Include="V1\ApplicationDetails.cs" />
     <Compile Include="V1\ContactPoint.cs" />
+    <Compile Include="V1\Dealer.cs" />
     <Compile Include="V1\EmploymentAddress.cs" />
     <Compile Include="V1\FullApplication.cs" />
     <Compile Include="V1\LeadApplication.cs" />

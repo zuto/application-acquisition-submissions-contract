@@ -52,6 +52,7 @@
     <Compile Include="DataAttributes\StringLengthRangeAttribute.cs" />
     <Compile Include="DataAttributes\ValidateObjectAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="V1\Advert.cs" />
     <Compile Include="V1\Applicant.cs" />
     <Compile Include="V1\ApplicantAdditionalDetails.cs" />
     <Compile Include="V1\ApplicantAddress.cs" />

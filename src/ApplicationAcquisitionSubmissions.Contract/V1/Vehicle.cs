@@ -33,5 +33,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         public decimal? Value { get; set; }
 
         public Dealer Dealer { get; set; }
+
+        public Advert Advert { get; set; }
     }
 }

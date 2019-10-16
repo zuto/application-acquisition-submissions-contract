@@ -15,7 +15,6 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         /// This element will be returned in the submission response 
         /// </summary>
         [StringLengthRange(1, 50)]
-        [Required]
         public string Reference { get; set; }
 
         [StringLengthRange(1, 255)]

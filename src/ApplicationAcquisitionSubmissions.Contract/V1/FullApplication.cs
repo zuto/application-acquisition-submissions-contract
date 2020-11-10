@@ -44,6 +44,11 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
 
         public long? ApplicationLeadId { get; set; }
 
+        public long? ApplicationLeadID
+        {
+            set => ApplicationLeadId = value;
+        }
+
         [StringLengthRange(1, 100)]
         public string WhereHeard { get; set; }
 

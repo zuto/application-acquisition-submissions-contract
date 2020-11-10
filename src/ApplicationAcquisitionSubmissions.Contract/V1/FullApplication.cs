@@ -44,7 +44,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
 
         public long? ApplicationLeadId { get; set; }
 
-        public long? ApplicationLeadID
+        private long? ApplicationLeadID
         {
             set => ApplicationLeadId = value;
         }

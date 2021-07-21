@@ -25,7 +25,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         [IntegerRange(0, 11)]
         public int Months { get; set; }
 
-        [AllowedValues(new[]{ "HOME OWNER", "PRIVATE TENANT", "LIVING WITH PARENTS", "LIVING WITH PARTNER", "COUNCIL TENANT", "HOUSING ASSOCIATION"})]
+        [AllowedValues(new[]{ "HOME OWNER", "PRIVATE TENANT", "LIVING WITH PARENTS", "LIVING WITH PARTNER", "COUNCIL TENANT", "HOUSING ASSOCIATION", "UNKNOWN" })]
         public string ResidentialStatus { get; set; }
     }  
 }

@@ -4,10 +4,10 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
 {
     public class ApplicantAdditionalDetails
     {        
-        [AllowedValues(new[]{ "MARRIED", "COHABITING", "LIVING WITH PARTNER", "SINGLE", "SEPARATED", "DIVORCED", "WIDOWED"})]
+        [AllowedValues(new[]{ "MARRIED", "COHABITING", "LIVING WITH PARTNER", "SINGLE", "SEPARATED", "DIVORCED", "WIDOWED", "UNKNOWN"})]
         public string MaritalStatus { get; set; }        
 
-        [AllowedValues(new[]{ "FULL UK", "PROVISIONAL UK", "EUROPEAN", "INTERNATIONAL", "NONE", "CBT", "A2","FULL A CLASS"})]
+        [AllowedValues(new[]{ "FULL UK", "PROVISIONAL UK", "EUROPEAN", "INTERNATIONAL", "NONE", "CBT", "A2","FULL A CLASS", "UNKNOWN" })]
         public string LicenceType { get; set; }      
 
         public bool? ValidUkPassport { get; set; }

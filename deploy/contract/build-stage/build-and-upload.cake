@@ -1,10 +1,10 @@
-#addin nuget:?package=Cake.FileHelpers&version=5.0.0
+#addin nuget:?package=Cake.FileHelpers&version=4.0.1
 
 Environment.CurrentDirectory = Directory("../../../");
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Debug");
 var buildDir = MakeAbsolute(Directory("build"));
-var buildBinDir = buildDir + Directory("/bin");
+var buildBinDir = buildDir + Directory("bin");
 var projectDir = "src\\ApplicationAcquisitionSubmissions.Contract\\";
 var projectPath = projectDir + "ApplicationAcquisitionSubmissions.Contract.csproj";
 var version = EnvironmentVariable("GO_PIPELINE_LABEL") ?? "NOVERSIONSPECIFIED";
@@ -22,8 +22,8 @@ Task("UpdateAssemblyInfo")
 {
     var assemblyInfo = projectDir + "Properties/AssemblyInfo.cs";
     ReplaceRegexInFiles(assemblyInfo,  "AssemblyVersion(\"1.0.0.0\")", "AssemblyVersion(\""+ version + "\")");
-	ReplaceRegexInFiles(assemblyInfo,  "AssemblyFileVersion(\"1.0.0.0\")", "AssemblyFileVersion(\""+ version + "\")");
-	ReplaceRegexInFiles(assemblyInfo,  "AssemblyCompany(\"\")", "AssemblyFileVersion(\"Zuto\")");
+		ReplaceRegexInFiles(assemblyInfo,  "AssemblyFileVersion(\"1.0.0.0\")", "AssemblyFileVersion(\""+ version + "\")");
+		ReplaceRegexInFiles(assemblyInfo,  "AssemblyCompany(\"\")", "AssemblyFileVersion(\"Zuto\")");
 });
 
 
@@ -31,18 +31,17 @@ Task("Build")
     .Does(() =>
 {
 	Console.WriteLine(projectPath);
-	MSBuild(projectPath, settings =>
-        settings.SetConfiguration(configuration)		  
-		  .WithProperty("OutputPath", "\"" + buildBinDir + "\"")
-          .SetVerbosity(Verbosity.Quiet));       
+	MSBuild(projectPath, settings => settings.SetConfiguration(configuration)		  
+		  .WithProperty("OutputPath", $"\"{buildBinDir}\"")
+			.SetVerbosity(Verbosity.Quiet));       
 
-    CopyFile(projectDir + "ApplicationAcquisitionSubmissions.Contract.nuspec", buildBinDir + "\\ApplicationAcquisitionSubmissions.Contract.nuspec");
+  CopyFile($"{projectDir}ApplicationAcquisitionSubmissions.Contract.nuspec", $"{buildBinDir}\\ApplicationAcquisitionSubmissions.Contract.nuspec");
 });
 
 Task("Package")    
     .Does(() =>
 {		
-    NuGetPack(buildBinDir + "\\ApplicationAcquisitionSubmissions.Contract.nuspec", new NuGetPackSettings
+    NuGetPack($"{buildBinDir}\\ApplicationAcquisitionSubmissions.Contract.nuspec", new NuGetPackSettings
 	{        
 		Verbosity = NuGetVerbosity.Detailed,		
 		IncludeReferencedProjects = true,
@@ -53,7 +52,7 @@ Task("Package")
 Task("Upload")    
     .Does(() =>
 {
-	var package = "ApplicationAcquisitionSubmissions.Contract." + version + ".nupkg";
+	var package = $"ApplicationAcquisitionSubmissions.Contract.{version}.nupkg";
 	NuGetPush(package, new NuGetPushSettings 
 	{ 
 		Source = nexusAddress,

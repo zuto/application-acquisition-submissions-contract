@@ -1,4 +1,4 @@
-#addin "Cake.FileHelpers"
+#addin nuget:?package=Cake.FileHelpers&version=5.0.0
 
 Environment.CurrentDirectory = Directory("../../../");
 var target = Argument("target", "Default");

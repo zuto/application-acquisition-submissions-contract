@@ -456,8 +456,8 @@ curl -XPOST -H "Content-type: application/json" -d '{"Origin":{"Value":"Api-Affi
             "EmploymentAddress": {
                 "NameNumber": "Winterton House", 
                 "Street": "Winterton Way", 
-                "TownCity": null,
-                "County": "Macclesfield",
+                "TownCity": "Macclesfield",
+                "County": "Cheshire",
                 "PostCode": "SK11 0LP"        
             }
         }]        

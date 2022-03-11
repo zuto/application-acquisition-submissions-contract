@@ -212,7 +212,7 @@ The basic details for the applicant is a required property.
 - MiddleNames: Must be empty, or between 1 and 100 characters 
 - Surname: Must be between 0 and 50 characters
 - DateOfBirth: Must be supplied in the format `yyyy-MM-ddThh:mm:ss+00:001` e.g. `2018-01-01T00:00:00+00:001`
-- PhoneNumbers: Must have a minimum of 1, and maximum of 2, with type set to `Home`, `Mobile` or Both (see example below)
+- PhoneNumbers: Must have a minimum of 1, and maximum of 2, with type set to `Home`, `Mobile` or Both (see example below). Standard UK numbers expected (starting with 0)
 - Email: Must be between 1 and 100 characters
 - ApplicantType: Must be set to `PRIMARY`or `JOINT`    
 
@@ -329,7 +329,7 @@ You can supply applicant employment information using this node, with up to 10 h
 - Occupation: Must be between 1 and 100 characters
 - EmployerName: Must be between 1 and 100 characters
 - EmploymentStatus: Must contain one of `AGENCY`, `FULL TIME PERMANENT`, `PART TIME`, `RETIRED`, `SELF EMPLOYED`, `STUDENT`, `SUB CONTRACT`, `TEMPORARY`, `UNEMPLOYED`
-- Telephone: Must be a standard uk phone number, starting with 0
+- Telephone: Must be null or a standard uk phone number, starting with 0
 - Years: Years spent in employment, between 0 and 100
 - Months: Months spent in employment, between 0 and 11
 - NetMonthlyIncome: Must be null, or greater than or equal to 0

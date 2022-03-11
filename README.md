@@ -275,10 +275,10 @@ e.g.
 
 The additional details for the applicant is a an optional property
 
-- MaritalStatus: Must be one of `MARRIED`, `COHABITING`, `LIVING WITH PARTNER`, `SINGLE`, `SEPARATED`, `DIVORCED`, `WIDOWED`
-- LicenceType: Must be one of `FULL UK`, `PROVISIONAL UK`, `EUROPEAN`, `INTERNATIONAL`, `NONE`, `CBT`, `A2`, `FULL A CLASS`
+- MaritalStatus: Must be one of `MARRIED`, `COHABITING`, `LIVING WITH PARTNER`, `SINGLE`, `SEPARATED`, `DIVORCED`, `WIDOWED`, `UNKNOWN`
+- LicenceType: Must be one of `FULL UK`, `PROVISIONAL UK`, `EUROPEAN`, `INTERNATIONAL`, `NONE`, `CBT`, `A2`, `FULL A CLASS`, `UNKNOWN`
 - ValidUkPassport: Must be true, false or null
-- OtherMonthlyIncome: Must be null, or greater an 0.01
+- OtherMonthlyIncome: Must be null, or greater than 0.01
     
 e.g.
 ```
@@ -303,7 +303,7 @@ You can supply between applicant addresses using this node, up to 10 historic ad
 - PostCode: Must be null or between 1 and 20 characters
 - Years: Years spent at the address, between 0 and 100
 - Months: Months spent at address, between 0 and 11
-- ResidentialStatus: Must be one of `HOME OWNER`, `PRIVATE TENANT`, `LIVING WITH PARENTS`, `LIVING WITH PARTNER`, `COUNCIL TENANT`, `HOUSING ASSOCIATION`
+- ResidentialStatus: Must be one of `HOME OWNER`, `PRIVATE TENANT`, `LIVING WITH PARENTS`, `LIVING WITH PARTNER`, `COUNCIL TENANT`, `HOUSING ASSOCIATION`, `UNKNOWN`
         
 e.g. 
 
@@ -329,14 +329,14 @@ You can supply applicant employment information using this node, with up to 10 h
 - Occupation: Must be between 1 and 100 characters
 - EmployerName: Must be between 1 and 100 characters
 - EmploymentStatus: Must contain one of `AGENCY`, `FULL TIME PERMANENT`, `PART TIME`, `RETIRED`, `SELF EMPLOYED`, `STUDENT`, `SUB CONTRACT`, `TEMPORARY`, `UNEMPLOYED`
-- Telephone: Must be a standard uk phone number
+- Telephone: Must be a standard uk phone number, starting with 0
 - Years: Years spent in employment, between 0 and 100
 - Months: Months spent in employment, between 0 and 11
-- NetMonthlyIncome: Must be null, or greater an 0.01
+- NetMonthlyIncome: Must be null, or greater than or equal to 0
 - EmploymentAddress: 
-    - NameNumber: The name or number of the property, between 1 and 100 characters
-    - Street: Must null or be between 1 and 100 characters
-    - TownCity: Must null or be between 1 and 100 characters
+    - NameNumber: The name or number of the property, either null or between 1 and 100 characters
+    - Street: Must be null or be between 1 and 100 characters
+    - TownCity: Must be between 1 and 100 characters
     - County: Must be null or between 1 and 100 characters
     - PostCode: Must be null or between 1 and 20 characters
             

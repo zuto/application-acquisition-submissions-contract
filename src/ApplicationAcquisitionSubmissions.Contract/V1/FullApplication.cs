@@ -1,5 +1,6 @@
 using ApplicationAcquisitionSubmissions.Contract.DataAttributes;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ApplicationAcquisitionSubmissions.Contract.V1
@@ -59,5 +60,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         public string Session { get; set; }
 
         public string QuoteEventGuid { get; set; }
+
+        public Dictionary<string, string> Metadata { get; set; }
     }
 }

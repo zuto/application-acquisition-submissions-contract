@@ -328,7 +328,7 @@ You can supply applicant employment information using this node, with up to 10 h
 
 - Occupation: Must be between 1 and 100 characters
 - EmployerName: Must be between 1 and 100 characters
-- EmploymentStatus: Must contain one of `AGENCY`, `FULL TIME PERMANENT`, `PART TIME`, `RETIRED`, `SELF EMPLOYED`, `STUDENT`, `SUB CONTRACT`, `TEMPORARY`, `UNEMPLOYED`
+- EmploymentStatus: Must contain one of `AGENCY`, `FULL TIME PERMANENT`, `PART TIME`, `RETIRED`, `SELF EMPLOYED`, `STUDENT`, `SUB CONTRACT`, `CARER`, `DISABILITY`, `TEMPORARY`, `UNEMPLOYED`
 - Telephone: Must be null or a standard uk phone number, starting with 0
 - Years: Years spent in employment, between 0 and 100
 - Months: Months spent in employment, between 0 and 11

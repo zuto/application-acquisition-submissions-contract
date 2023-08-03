@@ -11,7 +11,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         [StringLengthRange(1, 100)]
         public string EmployerName { get; set; }
 
-        [AllowedValues(new[] { "AGENCY", "FULL TIME PERMANENT", "PART TIME", "RETIRED", "SELF EMPLOYED", "STUDENT", "SUB CONTRACT", "TEMPORARY", "UNEMPLOYED" })]
+        [AllowedValues(new[] { "AGENCY", "FULL TIME PERMANENT", "PART TIME", "RETIRED", "SELF EMPLOYED", "STUDENT", "SUB CONTRACT", "CARER", "DISABILITY", "TEMPORARY", "UNEMPLOYED" })]
         public string EmploymentStatus { get; set; }
 
         [RegularExpression(Regexes.TelephoneNumber)]

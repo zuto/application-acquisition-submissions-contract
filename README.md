@@ -212,7 +212,7 @@ The basic details for the applicant is a required property.
 - MiddleNames: Must be empty, or between 1 and 100 characters 
 - Surname: Must be between 0 and 50 characters
 - DateOfBirth: Must be supplied in the format `yyyy-MM-ddThh:mm:ss+00:001` e.g. `2018-01-01T00:00:00+00:001`
-- PhoneNumbers: Must have a minimum of 1, and maximum of 2, with type set to `Home`, `Mobile` or Both (see example below). Standard UK numbers expected (starting with 0)
+- PhoneNumbers: Must have a minimum of 1, and maximum of 2, with type set to `Home`, `Mobile` or Both (see example below). `Home` numbers should be standard UK numbers and must start with 01 or 02. `Mobile` numbers must start with 07. 
 - Email: Must be between 1 and 100 characters
 - ApplicantType: Must be set to `PRIMARY`or `JOINT`    
 

@@ -242,27 +242,22 @@ e.g.
 
 ### FullApplication-Applicants-MarketingOptIn
 
+Api Affiliates do not need to collect Marketing opt in options. For Api Affiliates, this must be submitted as:
+
 ```diff
-+ Api Affiliates do not need to populate the Marketing opt in options.
-
-For Api affiliates (as per GDPR requirements), we assume
-
 ThirdPartyReferral as Opt Out
 SMS as Opt Out
 Phone as Opt In
 Email as Opt In
 ```
 
-Internally, we provide 3 distinct options to allow customers to opt-into marketing communications by Email, Phone or SMS.
-You must provide these details individually, they cannot be bundled together. You must allow a positive opt in and collect the customers preferences by providing 3 distinct opt-in checkboxes on your form.
-
-e.g.
+We manage consent on our side. We screen against the TPS for phone preferences, and we allow customers to manage their email opt-in as soon as they hit the Zuto environment.
 
 ```
     "Applicants": [{
         "MarketingOptIn": {
             "Email": true,
-            "Sms": true,
+            "Sms": false,
             "Phone": true,
             "ThirdPartyReferral": false
         }
@@ -297,8 +292,11 @@ e.g.
 You can supply between applicant addresses using this node, up to 10 historic adresses, with the most recent address first, ordered chronologically
 
 - NameNumber: The name or number of the property, between 1 and 100 characters.
-    - This must contain the Flat, Building Name, and Building Number (were applicable), so it might be best to include seperate fields in your form to capture this information, and then concatenate the values to map to our NameNumber field.
-    - When concatenating this information, it's important that NameNumber is sanitised so as not to pass null or additional empty characters. 
+    - This field should capture SubBuildings (such as flats), building names and building numbers (where applicable), so it might be best to include separate fields in your form to capture this information and then concatenate accordingly.
+    - Some providers will use a required Address Line 1 and an optional Address Line 2, and then concatenate the values to map to our NameNumber field.
+    - Other providers will have separate fields for Flat Number, Building Name and Building Number where at least 1 of those fields is required. The ordering of these fields should always be `FLAT NUMBER` + `BUILDING NAME` + `BUILDING NUMBER`
+    - When concatenating this information, it's important that NameNumber is sanitised so as not to pass null, additional empty characters or duplicate values.
+    - A good test example would be: Apartment 5 (Flat number), Marsden House (Building name), 31 (Building number) .. this would be followed by the Street, e.g. Lower Reedley Road.
 - Street: Must be null or between 1 and 100 characters
 - TownCity: Must be null or between 1 and 100 characters
 - County: Must be null or between 1 and 100 characters
@@ -336,8 +334,8 @@ e.g. for 1 address:
         "Months": 6,
         "ResidentialStatus": "HOME OWNER"
     },{
-        "NameNumber": "Floor 4, 8", 
-        "Street": "Exchange Street", 
+        "NameNumber": "Apartment 5 Marsden House 31", 
+        "Street": "Lower Reedley Road", 
         "TownCity": Manchester,
         "County": "Greater Manchester",
         "PostCode": "M2 7HA",
@@ -358,6 +356,7 @@ You can supply applicant employment information using this node, with up to 10 h
 - EmployerName: Must be between 1 and 100 characters
 - EmploymentStatus: Must contain one of `AGENCY`, `FULL TIME PERMANENT`, `PART TIME`, `RETIRED`, `SELF EMPLOYED`, `STUDENT`, `SUB CONTRACT`, `CARER`, `DISABILITY`, `TEMPORARY`, `UNEMPLOYED`
     - If the EmploymentStatus is one of the following: `UNEMPLOYED`, `STUDENT`, `DISABILITY`, `RETIRED`, `SUB CONTRACT` or `CARER` - Map the following Employment Details fields to the following:
+      
       | Our Mapping | What to pass in EmployerName | What to pass in EmploymentAddress: { TownCity: value } | What to pass in Occupation |
       |-------------|-------------------------------|--------------------------------------------------------|-----------------------------|
       | UNEMPLOYED  | 'not employed'                | Applicant’s current address town                        | 'not employed'              |
@@ -378,7 +377,7 @@ You can supply applicant employment information using this node, with up to 10 h
     - County: Must be null or between 1 and 100 characters
     - PostCode: Must be null or between 1 and 20 characters
 
- Our lender panel requires 2 years employment history, so multiple employments that add up to 2 or more years will need to be passed to us. (We only accept up to 10 entries)
+ Our lender panel requires 2 years employment history, so multiple employments that add up to 2 or more years will need to be passed to us. (We only accept up to 10 employment entries).
             
 e.g. 1 for employment:
 
@@ -394,29 +393,26 @@ e.g. 1 for employment:
         "EmploymentAddress": {
             "NameNumber": "Winterton House", 
             "Street": "Winterton Way", 
-            "TownCity": null,
+            "TownCity": Manchester,
             "County": "Macclesfield",
             "PostCode": "SK11 0LP"        
         }
     }]
 ```
 
-...and for multiple employments (up to 10): 
+...and for multiple employments (up to 10) - this assumes the applicant's current home address TownCity is Manchester: 
+
 ```
     "ApplicantEmployment": [{
-        "Occupation": "Software Engineer",
-        "EmployerName": "Zuto",
-        "EmploymentStatus": "FULL TIME PERMANENT",
+        "Occupation": "not employed",
+        "EmployerName": "not employed",
+        "EmploymentStatus": "UNEMPLOYED",
         "Telephone": "01234567890",
         "Years": 1,
         "Months": 6,
         "NetMonthlyIncome": 1300.00,
         "EmploymentAddress": {
-            "NameNumber": "Winterton House", 
-            "Street": "Winterton Way", 
-            "TownCity": null,
-            "County": "Macclesfield",
-            "PostCode": "SK11 0LP"        
+            "TownCity": Manchester     
         }
     },{
         "Occupation": "Software Engineer",

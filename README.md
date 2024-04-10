@@ -311,8 +311,8 @@ e.g. for 1 address:
     "ApplicantAddress": [{
         "NameNumber": "Winterton House", 
         "Street": "Winterton Way", 
-        "TownCity": null,
-        "County": "Macclesfield",
+        "TownCity": Macclesfield,
+        "County": "Cheshire East",
         "PostCode": "SK11 0LP",
         "Years": 1,
         "Months": 6,

@@ -212,7 +212,7 @@ The basic details for the applicant is a required property.
 - MiddleNames: Must be empty, or between 1 and 100 characters 
 - Surname: Must be between 0 and 50 characters
 - DateOfBirth: Must be supplied in the format `yyyy-MM-ddThh:mm:ss+00:001` e.g. `2018-01-01T00:00:00+00:001`
-- PhoneNumbers: Must have a minimum of 1, and maximum of 2, with type set to `Home`, `Mobile` or Both (see example below). `Home` numbers should be standard UK numbers and must start with 01 or 02. `Mobile` numbers must start with 07. 
+- PhoneNumbers: Must have a minimum of 1, and maximum of 2, with type set to `Home`, `Mobile` or Both (see example below). `Home` numbers should be standard UK numbers and must start with 01 or 02. `Mobile` numbers must start with 07, and must be 11 digits.
 - Email: Must be between 1 and 100 characters
 - ApplicantType: Must be set to `PRIMARY`or `JOINT`    
 
@@ -296,7 +296,9 @@ e.g.
 
 You can supply between applicant addresses using this node, up to 10 historic adresses, with the most recent address first, ordered chronologically
 
-- NameNumber: The name or number of the property, between 1 and 100 characters
+- NameNumber: The name or number of the property, between 1 and 100 characters.
+    - This must contain the Flat, Building Name, and Building Number (were applicable), so it might be best to include seperate fields in your form to capture this information, and then concatenate the values to map to our NameNumber field.
+    - When concatenating this information, it's important that NameNumber is sanitised so as not to pass null or additional empty characters. 
 - Street: Must be null or between 1 and 100 characters
 - TownCity: Must be null or between 1 and 100 characters
 - County: Must be null or between 1 and 100 characters
@@ -304,7 +306,9 @@ You can supply between applicant addresses using this node, up to 10 historic ad
 - Years: Years spent at the address, between 0 and 100
 - Months: Months spent at address, between 0 and 11
 - ResidentialStatus: Must be one of `HOME OWNER`, `PRIVATE TENANT`, `LIVING WITH PARENTS`, `LIVING WITH PARTNER`, `COUNCIL TENANT`, `HOUSING ASSOCIATION`, `UNKNOWN`
-        
+
+Our lender panel requires 3 years address history, so multiple addresses that add up to 3 or more years will need to be passed to us. (We only accept up to 10 addresses)
+
 e.g. for 1 address:
 
 ```
@@ -314,7 +318,7 @@ e.g. for 1 address:
         "TownCity": Macclesfield,
         "County": "Cheshire East",
         "PostCode": "SK11 0LP",
-        "Years": 1,
+        "Years": 3,
         "Months": 6,
         "ResidentialStatus": "HOME OWNER"
     }]
@@ -353,6 +357,16 @@ You can supply applicant employment information using this node, with up to 10 h
 - Occupation: Must be between 1 and 100 characters
 - EmployerName: Must be between 1 and 100 characters
 - EmploymentStatus: Must contain one of `AGENCY`, `FULL TIME PERMANENT`, `PART TIME`, `RETIRED`, `SELF EMPLOYED`, `STUDENT`, `SUB CONTRACT`, `CARER`, `DISABILITY`, `TEMPORARY`, `UNEMPLOYED`
+    - If the EmploymentStatus is one of the following: `UNEMPLOYED`, `STUDENT`, `DISABILITY`, `RETIRED`, `SUB CONTRACT` or `CARER` - Map the following Employment Details fields to the following:
+      | Our Mapping | What to pass in EmployerName | What to pass in EmploymentAddress: { TownCity: value } | What to pass in Occupation |
+      |-------------|-------------------------------|--------------------------------------------------------|-----------------------------|
+      | UNEMPLOYED  | 'not employed'                | Applicant’s current address town                        | 'not employed'              |
+      | STUDENT     | 'student'                     | Applicant’s current address town                        | 'student'                   |
+      | DISABILITY  | 'disability'                  | Applicant’s current address town                        | 'disability'                |
+      | RETIRED     | 'retired'                     | Applicant’s current address town                        | 'retired'                   |
+      | SUB CONTRACT| 'sub contractor'              | Applicant’s current address town                        | 'sub contractor'            |
+      | CARER       | 'carer'                       | Applicant’s current address town                        | 'carer'                     |
+
 - Telephone: Must be null or a standard uk phone number, starting with 0
 - Years: Years spent in employment, between 0 and 100
 - Months: Months spent in employment, between 0 and 11
@@ -363,8 +377,10 @@ You can supply applicant employment information using this node, with up to 10 h
     - TownCity: Must be between 1 and 100 characters
     - County: Must be null or between 1 and 100 characters
     - PostCode: Must be null or between 1 and 20 characters
+
+ Our lender panel requires 2 years employment history, so multiple employments that add up to 2 or more years will need to be passed to us. (We only accept up to 10 entries)
             
-e.g. 
+e.g. 1 for employment:
 
 ```
     "ApplicantEmployment": [{
@@ -383,6 +399,42 @@ e.g.
             "PostCode": "SK11 0LP"        
         }
     }]
+```
+
+...and for multiple employments (up to 10): 
+```
+    "ApplicantEmployment": [{
+        "Occupation": "Software Engineer",
+        "EmployerName": "Zuto",
+        "EmploymentStatus": "FULL TIME PERMANENT",
+        "Telephone": "01234567890",
+        "Years": 1,
+        "Months": 6,
+        "NetMonthlyIncome": 1300.00,
+        "EmploymentAddress": {
+            "NameNumber": "Winterton House", 
+            "Street": "Winterton Way", 
+            "TownCity": null,
+            "County": "Macclesfield",
+            "PostCode": "SK11 0LP"        
+        }
+    },{
+        "Occupation": "Software Engineer",
+        "EmployerName": "Zuto",
+        "EmploymentStatus": "FULL TIME PERMANENT",
+        "Telephone": "01234567890",
+        "Years": 2,
+        "Months": 7,
+        "NetMonthlyIncome": 1000.00,
+        "EmploymentAddress": {
+            "NameNumber": "Floor 4, 8", 
+            "Street": "Exchange Street", 
+            "TownCity": Manchester,
+            "County": "Greater Manchester",
+            "PostCode": "M2 7HA"        
+        }
+    },
+    ]
 ```
 
 [^ Back to Top](#application-acquisition-submissions-contract)

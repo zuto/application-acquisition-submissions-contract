@@ -45,16 +45,18 @@ The application endpoint is located at:
 - Testing: [https://application-acquisition-submissions.uat.zuto.cloud](https://application-acquisition-submissions.uat.zuto.cloud)
 - Production: [https://application-acquisition-submissions.zuto.cloud](https://application-acquisition-submissions.zuto.cloud)
 
+Please ensure you do not send to production until you have had sign-off in the UAT testing environment.
+
 On the service, there are two methods available.
 
 - FullApplication
 - PartialApplication
 
-e.g. 
+e.g. for the testing environment:
 
 ```
 https://application-acquisition-submissions.uat.zuto.cloud/fullapplication
-https://application-acquisition-submissions.zuto.cloud/partialapplication
+https://application-acquisition-submissions.uat.zuto.cloud/partialapplication
 ```
 
 When sending a request to the endpoint, use a POST, with the content type set to application/json 

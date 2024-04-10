@@ -305,7 +305,7 @@ You can supply between applicant addresses using this node, up to 10 historic ad
 - Months: Months spent at address, between 0 and 11
 - ResidentialStatus: Must be one of `HOME OWNER`, `PRIVATE TENANT`, `LIVING WITH PARENTS`, `LIVING WITH PARTNER`, `COUNCIL TENANT`, `HOUSING ASSOCIATION`, `UNKNOWN`
         
-e.g. 
+e.g. for 1 address:
 
 ```
     "ApplicantAddress": [{
@@ -318,6 +318,30 @@ e.g.
         "Months": 6,
         "ResidentialStatus": "HOME OWNER"
     }]
+```
+
+...and for multiple addresses (up to 10): 
+```
+    "ApplicantAddress": [{
+        "NameNumber": "Winterton House", 
+        "Street": "Winterton Way", 
+        "TownCity": Macclesfield,
+        "County": "Cheshire East",
+        "PostCode": "SK11 0LP",
+        "Years": 1,
+        "Months": 6,
+        "ResidentialStatus": "HOME OWNER"
+    },{
+        "NameNumber": "Floor 4, 8", 
+        "Street": "Exchange Street", 
+        "TownCity": Manchester,
+        "County": "Greater Manchester",
+        "PostCode": "M2 7HA",
+        "Years": 2,
+        "Months": 6,
+        "ResidentialStatus": "PRIVATE TENANT"
+    }
+]
 ```
 
 [^ Back to Top](#application-acquisition-submissions-contract)

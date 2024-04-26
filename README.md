@@ -170,7 +170,7 @@ At the top level of the contract, application details are required.
 
 - Origin-Value {string}: Must always be set to `Api-Affiliate`
 - ApplicationType {string}: Must always be set to `APPLICATION`
-- DateApplied {string}: Should be set to null, or the time you took the application, in the format `yyyy-MM-ddThh:mm:ss+00:00` e.g. `2018-03-17T16:47:49+00:00`
+- DateApplied {string or null}: Should be set to null, or the time you took the application, in the ISO format `yyyy-MM-ddThh:mm:ss+00:00` e.g. `2018-03-17T16:47:49+00:00`
 
 e.g.
 
@@ -232,7 +232,7 @@ The basic details for the applicant is a required property.
 - Forename {string}: Must be between 0 and 50 characters
 - MiddleNames {string or null}: Must be null, or between 1 and 100 characters.
 - Surname {string}: Must be between 0 and 50 characters
-- DateOfBirth {string}: Must be supplied in the format `yyyy-MM-ddThh:mm:ss+00:001` e.g. `2018-01-01T00:00:00+00:001`
+- DateOfBirth {string}: Must be supplied in the ISO format `yyyy-MM-ddThh:mm:ss+00:00` e.g. `2018-01-01T00:00:00+00:00`
 - PhoneNumbers-Type {string}: Must have a minimum of 1, and maximum of 2, with type set to `Home`, `Mobile` or Both (see example below). 
 - PhoneNumbers-Value {string}: Must have a minimum of 1, and maximum of 2. `Home` numbers should be standard UK numbers and must start with 01 or 02. `Mobile` numbers must start with 07, and must be 11 digits.
 - Email {string}: Must be between 1 and 100 characters. Please ensure there is ample validation, e.g. an @ symbol, and a check for a 'dot something' after the @ symbol.
@@ -247,7 +247,7 @@ e.g.
         "Forename": "Josephine",
         "MiddleNames": null,
         "Surname": "Bloggs",
-        "DateOfBirth": "1985-07-16T00:00:00+00:001",
+        "DateOfBirth": "1985-07-16T00:00:00+00:00",
         "PhoneNumbers": [{
             "Type": "HOME",
             "Value": "01234567890"

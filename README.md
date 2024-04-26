@@ -139,11 +139,30 @@ StatusCode: 500
 
 This will only occur, if our system is experiencing some kind of fault, or the contract you supplied does not follow the same format as described in this document. A test example is provided to help diagnose this issue.
 
+#### Redirect Considerations
+
+Once a user has submitted the form on your side, we would require a modal loading spinner to immediately show and block user interaction. Wording 'we are now transferring you to our preferred partner Zuto, to complete your application' ensures a seamless journey for your customers.
+
+The response from our api in production should be swift - ~ <1 second - however this is not a good user journey as it is not enough time to read the wording on the modal. 
+
+Assuming the response from our api is Success - we would advise showing the modal for a duration of whichever is longer: 
+- 4 seconds
+- Or, the response from the api
+
+For example, if our api took 5 seconds to return a Success response, the modal should hold for 5 seconds. If the api response took 1 second, the modal should hold for 4 seconds.
+
+The Success response will return a redirect link which the customer should be taken to. It is very important that the interaction blocking modal should not disappear before the redirect happens, to ensure there is not an accidental duplicate submission made through a secondary click. 
+
+If the api returns Unsuccessful, you will need to consider how the modal should react in order to allow a re-submission. 
+  
+
 [^ Back to Top](#application-acquisition-submissions-contract)
 
 # Populating the FullApplication contract
 
 Each of the sections describes a node within the json contract. If a property is not mentioned, then it can be left as null, or not included when submitting.
+
+For string values, please ensure that trailing and leading spaces are trimmed.
 
 ### FullApplication
 

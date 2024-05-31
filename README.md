@@ -532,7 +532,7 @@ curl -XPOST -H "Content-type: application/json" -d '{"Origin":{"Value":"Api-Affi
         "ApplicantAddress": [{
             "NameNumber": "Winterton House", 
             "Street": "Winterton Way", 
-            "TownCity": Manchester,
+            "TownCity": "Manchester",
             "County": "Macclesfield",
             "PostCode": "SK11 0LP",
             "Years": 1,

@@ -229,9 +229,9 @@ The basic details for the applicant is a required property.
 
 - Gender {string}: Must be set to `MALE` or `FEMALE`        
 - Title {string}: Must be set to `Mr`, `Miss`, `Mrs` or `Ms`. If `Miss`, `Mrs` or `Ms` please ensure these are mapped to `FEMALE` on Gender, not `MALE`.
-- Forename {string}: Must be between 0 and 50 characters
+- Forename {string}: Must be between 1 and 50 characters
 - MiddleNames {string or null}: Must be null, or between 1 and 100 characters.
-- Surname {string}: Must be between 0 and 50 characters
+- Surname {string}: Must be between 1 and 50 characters
 - DateOfBirth {string}: Must be supplied in the ISO format `yyyy-MM-ddThh:mm:ss+00:00` e.g. `2018-01-01T00:00:00+00:00`
 - PhoneNumbers-Type {string}: Must have a minimum of 1, and maximum of 2, with type set to `Home`, `Mobile` or Both (see example below). 
 - PhoneNumbers-Value {string}: Must have a minimum of 1, and maximum of 2. `Home` numbers should be standard UK numbers and must start with 01 or 02. `Mobile` numbers must start with 07, and must be 11 digits.

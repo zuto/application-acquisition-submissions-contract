@@ -9,7 +9,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         public decimal? CreditLimit { get; set; }
 
         [Required]
-        [AllowedValues(new[] { "CAR", "VAN", "MOTORBIKE", "OTHER", "CARAVAN", "MOTORHOME", "TAXI" })]
+        [AllowedValuesValidation(new[] { "CAR", "VAN", "MOTORBIKE", "OTHER", "CARAVAN", "MOTORHOME", "TAXI" })]
         public string VehicleType { get; set; }
 
         [MoneyRange(0.01, 99999999)]
@@ -18,7 +18,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         public bool? HasGuarantor { get; set; }
         public bool? HasLicenceGuarantor { get; set; }
 
-        [AllowedValues(new[] {null, "UNKNOWN", "HP", "PCP", "PERSONAL LOAN" })]
+        [AllowedValuesValidation(new[] {null, "UNKNOWN", "HP", "PCP", "PERSONAL LOAN" })]
         public string FinanceType { get; set; }
     }
 }

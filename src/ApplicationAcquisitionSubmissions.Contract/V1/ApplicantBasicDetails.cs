@@ -5,11 +5,11 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
 {
     public class ApplicantBasicDetails
     {
-        [AllowedValues(new[] { "MALE", "FEMALE" })]
+        [AllowedValuesValidation(new[] { "MALE", "FEMALE" })]
         public string Gender { get; set; }
 
-        [AllowedValues(new[] { "Mr", "Miss", "Mrs", "Ms" })]
-        public string Title { get; set; }
+        [AllowedValuesValidation(new[] { "Mr", "Miss", "Mrs", "Ms" })]
+        public string Title { get; set;}
 
         [StringLengthRange(1, 50)]
         public string Forename { get; set; }
@@ -32,7 +32,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         [StringLengthRange(1, 100)]
         public string Email { get; set; }
 
-        [AllowedValues(new[] { "PRIMARY", "JOINT" })]
+        [AllowedValuesValidation(new[] { "PRIMARY", "JOINT" })]
         public string ApplicantType { get; set; }
     }
 }

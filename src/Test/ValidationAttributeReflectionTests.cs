@@ -18,10 +18,10 @@ namespace Test
             
             Assert.That(vehicleStatusProperty, Is.Not.Null);
             
-            var attributes = vehicleStatusProperty.GetCustomAttributes(typeof(AllowedValuesAttribute), false);
+            var attributes = vehicleStatusProperty.GetCustomAttributes(typeof(AllowedValuesValidation), false);
             Assert.That(attributes.Length, Is.GreaterThan(0));
             
-            var attribute = attributes[0] as AllowedValuesAttribute;
+            var attribute = attributes[0] as AllowedValuesValidation;
             Assert.That(attribute, Is.Not.Null);
             Assert.That(attribute.Values, Contains.Item("DESIRED"));
             Assert.That(attribute.Values, Contains.Item("PX"));
@@ -35,10 +35,10 @@ namespace Test
             
             Assert.That(typeProperty, Is.Not.Null);
             
-            var attributes = typeProperty.GetCustomAttributes(typeof(AllowedValuesAttribute), false);
+            var attributes = typeProperty.GetCustomAttributes(typeof(AllowedValuesValidation), false);
             Assert.That(attributes.Length, Is.GreaterThan(0));
             
-            var attribute = attributes[0] as AllowedValuesAttribute;
+            var attribute = attributes[0] as AllowedValuesValidation;
             Assert.That(attribute, Is.Not.Null);
             Assert.That(attribute.Values, Contains.Item("HOME"));
             Assert.That(attribute.Values, Contains.Item("MOBILE"));

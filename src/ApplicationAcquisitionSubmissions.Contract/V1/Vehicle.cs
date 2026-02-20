@@ -24,7 +24,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         public bool? IsUsed { get; set; }
 
         [Required]
-        [AllowedValues(new[] { "DESIRED", "PX" })]
+        [AllowedValuesValidation(new[] { "DESIRED", "PX" })]
         public string VehicleStatus { get; set; }
 
         public bool? ValuationRequired { get; set; }

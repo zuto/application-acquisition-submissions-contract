@@ -30,7 +30,7 @@ namespace Test
             Assert.That(assembly.GetType("ApplicationAcquisitionSubmissions.Contract.V1.PhoneNumber"), Is.Not.Null);
             Assert.That(assembly.GetType("ApplicationAcquisitionSubmissions.Contract.V1.Applicant"), Is.Not.Null);
             Assert.That(assembly.GetType("ApplicationAcquisitionSubmissions.Contract.V1.FullApplication"), Is.Not.Null);
-            Assert.That(assembly.GetType("ApplicationAcquisitionSubmissions.Contract.DataAttributes.AllowedValuesAttribute"), Is.Not.Null);
+            Assert.That(assembly.GetType("ApplicationAcquisitionSubmissions.Contract.DataAttributes.AllowedValuesValidation"), Is.Not.Null);
         }
 
         [Test]
@@ -108,10 +108,10 @@ namespace Test
             var vehicleType = typeof(Vehicle);
             var vehicleStatusProperty = vehicleType.GetProperty("VehicleStatus");
             
-            var attributes = vehicleStatusProperty.GetCustomAttributes(typeof(AllowedValuesAttribute), false);
+            var attributes = vehicleStatusProperty.GetCustomAttributes(typeof(AllowedValuesValidation), false);
             Assert.That(attributes.Length, Is.GreaterThan(0));
             
-            var attribute = attributes[0] as AllowedValuesAttribute;
+            var attribute = attributes[0] as AllowedValuesValidation;
             Assert.That(attribute, Is.Not.Null);
             Assert.That(attribute.Values, Is.Not.Null);
             Assert.That(attribute.Values.Length, Is.GreaterThan(0));

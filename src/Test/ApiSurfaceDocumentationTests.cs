@@ -79,7 +79,7 @@ namespace Test
                 "ApplicationAcquisitionSubmissions.Contract.V1.FullApplication",
                 "ApplicationAcquisitionSubmissions.Contract.V1.LeadApplication",
                 "ApplicationAcquisitionSubmissions.Contract.V1.PartialApplication",
-                "ApplicationAcquisitionSubmissions.Contract.DataAttributes.AllowedValuesAttribute",
+                "ApplicationAcquisitionSubmissions.Contract.DataAttributes.AllowedValuesValidation",
                 "ApplicationAcquisitionSubmissions.Contract.DataAttributes.StringLengthRangeAttribute",
                 "ApplicationAcquisitionSubmissions.Contract.DataAttributes.IntegerRangeAttribute",
                 "ApplicationAcquisitionSubmissions.Contract.DataAttributes.MoneyRangeAttribute",

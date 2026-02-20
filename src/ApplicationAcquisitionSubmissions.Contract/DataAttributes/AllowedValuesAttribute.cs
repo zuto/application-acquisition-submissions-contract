@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace ApplicationAcquisitionSubmissions.Contract.DataAttributes
 {
-    public class AllowedValuesAttribute : ValidationAttribute
+    public class AllowedValuesValidation : ValidationAttribute
     {
         public string[] Values { get; }        
 
-        public AllowedValuesAttribute(string[] values)
+        public AllowedValuesValidation(string[] values)
         {
             Values = values;
         }

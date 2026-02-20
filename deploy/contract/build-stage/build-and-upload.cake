@@ -17,23 +17,16 @@ Task("Clean")
     CleanDirectory(buildDir);
 });
 
-Task("UpdateAssemblyInfo")
-    .Does(() =>
-{
-    var assemblyInfo = projectDir + "Properties/AssemblyInfo.cs";
-    ReplaceRegexInFiles(assemblyInfo,  "AssemblyVersion(\"1.0.0.0\")", "AssemblyVersion(\""+ version + "\")");
-		ReplaceRegexInFiles(assemblyInfo,  "AssemblyFileVersion(\"1.0.0.0\")", "AssemblyFileVersion(\""+ version + "\")");
-		ReplaceRegexInFiles(assemblyInfo,  "AssemblyCompany(\"\")", "AssemblyFileVersion(\"Zuto\")");
-});
-
-
 Task("Build")    
     .Does(() =>
 {
 	Console.WriteLine(projectPath);
-	MSBuild(projectPath, settings => settings.SetConfiguration(configuration)		  
-		  .WithProperty("OutputPath", $"\"{buildBinDir}\"")
-			.SetVerbosity(Verbosity.Quiet));       
+	DotNetBuild(projectPath, new DotNetBuildSettings
+	{
+		Configuration = configuration,
+		OutputDirectory = buildBinDir.ToString(),
+		Verbosity = DotNetVerbosity.Quiet
+	});
 
   CopyFile($"{projectDir}ApplicationAcquisitionSubmissions.Contract.nuspec", $"{buildBinDir}\\ApplicationAcquisitionSubmissions.Contract.nuspec");
 });
@@ -64,7 +57,6 @@ Task("Upload")
 
 Task("Default")    
 	.IsDependentOn("Clean")
-	.IsDependentOn("UpdateAssemblyInfo")
 	.IsDependentOn("Build")
 	.IsDependentOn("Package")	
 	.IsDependentOn("Upload");

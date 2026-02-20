@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Test
 {
-    public class ValidatorTests
+    public class RootValidatorTests
     {
         [Test]
         public void ItShouldAcceptLeadWithNoApplicationDetails()

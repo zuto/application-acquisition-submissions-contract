@@ -31,7 +31,7 @@ namespace Test.ValidatorTests.ApplicationDetailsTests
 
             var validationContext = new ValidationContext(applicationDetails, null, null);
             var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(applicationDetails, validationContext, true));
-            StringAssert.StartsWith("CreditLimit should contain be between 0.01 and 99999999.00", exception.Message);
+            Assert.That(exception.Message, Does.StartWith("CreditLimit should contain be between 0.01 and 99999999.00"));
         }
 
         [TestCase(0.01)]

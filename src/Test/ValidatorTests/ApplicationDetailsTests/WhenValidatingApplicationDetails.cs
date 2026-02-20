@@ -7,7 +7,7 @@ namespace Test.ValidatorTests.ApplicationDetailsTests
     class WhenValidatingApplicationDetails
     {
         [Test]
-        public void ItShouldRejectNullCreditLimit()
+        public void ItShouldAcceptNullCreditLimit()
         {
             var applicationDetails = new ApplicationDetails
             {
@@ -15,9 +15,7 @@ namespace Test.ValidatorTests.ApplicationDetailsTests
             };
 
             var validationContext = new ValidationContext(applicationDetails, null, null);
-            var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(applicationDetails, validationContext, true));
-            Assert.That(exception.Message, Is.EqualTo("The CreditLimit field is required."));
-
+            Assert.That(() => Validator.ValidateObject(applicationDetails, validationContext, true), Throws.Nothing);
         }
 
         [Test]

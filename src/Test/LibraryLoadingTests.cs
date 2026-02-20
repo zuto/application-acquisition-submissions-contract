@@ -124,7 +124,7 @@ namespace Test
             var version = assembly.GetName().Version;
             
             Assert.That(version, Is.Not.Null);
-            Assert.That(version.Major, Is.EqualTo(2));
+            Assert.That(version.Major, Is.EqualTo(3));
             Assert.That(version.Minor, Is.EqualTo(0));
         }
     }

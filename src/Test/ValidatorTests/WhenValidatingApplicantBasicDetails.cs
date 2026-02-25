@@ -7,50 +7,17 @@ namespace Test.ValidatorTests
 {
     class WhenValidatingApplicantBasicDetails
     {
-        [Test]
-        public void ItShouldAcceptValidForename()
+        
+        [TestCase("John")]
+        [TestCase("John!")]
+        [TestCase("john@hotmail.com")]
+        [TestCase("Juan237")]
+        [TestCase(null)]
+        public void ItShouldAcceptValidForname(string forename)
         {
             var basicDetails = new ApplicantBasicDetails
             {
-                Forename = "John",
-                MiddleNames = "Michael",
-                Surname = "Smith",
-                Gender = "MALE",
-                Title = "Mr",
-                DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
-                ApplicantType = "PRIMARY"
-            };
-
-            var validationContext = new ValidationContext(basicDetails, null, null);
-            Assert.That(() => Validator.ValidateObject(basicDetails, validationContext, true), Throws.Nothing);
-        }
-
-        [Test]
-        public void ItShouldAcceptFornameWithNumbers()
-        {
-            var basicDetails = new ApplicantBasicDetails
-            {
-                Forename = "John123",
-                MiddleNames = "Michael",
-                Surname = "Smith",
-                Gender = "MALE",
-                Title = "Mr",
-                DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
-                ApplicantType = "PRIMARY"
-            };
-
-            var validationContext = new ValidationContext(basicDetails, null, null);
-            Assert.That(() => Validator.ValidateObject(basicDetails, validationContext, true), Throws.Nothing);
-        }
-
-        [Test]
-        public void ItShouldAcceptFornameWithSpecialCharacters()
-        {
-            var basicDetails = new ApplicantBasicDetails
-            {
-                Forename = "John!",
+                Forename = forename,
                 MiddleNames = "Michael",
                 Surname = "Smith",
                 Gender = "MALE",
@@ -84,51 +51,17 @@ namespace Test.ValidatorTests
             Assert.That(exception.Message, Does.Contain("Forename"));
         }
 
-        [Test]
-        public void ItShouldAcceptValidMiddleNames()
+        [TestCase("Michael James")]
+        [TestCase("Michael James!")]
+        [TestCase("mj@hotmail.com")]
+        [TestCase("Michael456")]
+        [TestCase(null)]
+        public void ItShouldAcceptValidMiddleNames(string middlenames)
         {
             var basicDetails = new ApplicantBasicDetails
             {
                 Forename = "John",
-                MiddleNames = "Michael James",
-                Surname = "Smith",
-                Gender = "MALE",
-                Title = "Mr",
-                DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
-                ApplicantType = "PRIMARY"
-            };
-
-            var validationContext = new ValidationContext(basicDetails, null, null);
-            Assert.That(() => Validator.ValidateObject(basicDetails, validationContext, true), Throws.Nothing);
-        }
-
-        [Test]
-        public void ItShouldAcceptMiddleNamesWithNumbers()
-        {
-            var basicDetails = new ApplicantBasicDetails
-            {
-                Forename = "John",
-                MiddleNames = "Michael456",
-                Surname = "Smith",
-                Gender = "MALE",
-                Title = "Mr",
-                DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
-                ApplicantType = "PRIMARY"
-            };
-
-            var validationContext = new ValidationContext(basicDetails, null, null);
-            Assert.That(() => Validator.ValidateObject(basicDetails, validationContext, true), Throws.Nothing);
-        }
-
-        [Test]
-        public void ItShouldAcceptMiddleNamesWithSpecialCharacters()
-        {
-            var basicDetails = new ApplicantBasicDetails
-            {
-                Forename = "John",
-                MiddleNames = "Michael&",
+                MiddleNames = middlenames,
                 Surname = "Smith",
                 Gender = "MALE",
                 Title = "Mr",
@@ -161,14 +94,20 @@ namespace Test.ValidatorTests
             Assert.That(exception.Message, Does.Contain("MiddleNames"));
         }
 
-        [Test]
-        public void ItShouldAcceptValidSurname()
+        [TestCase("Smith")]
+        [TestCase("Philpott-Smith")]
+        [TestCase("Philpott Smith")]
+        [TestCase("O'Hara")]
+        [TestCase("mj@hotmail.com")]
+        [TestCase("Philpott456")]
+        [TestCase(null)]
+        public void ItShouldAcceptValidSurname(string surname)
         {
             var basicDetails = new ApplicantBasicDetails
             {
                 Forename = "John",
                 MiddleNames = "Michael",
-                Surname = "Smith",
+                Surname = surname,
                 Gender = "MALE",
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
@@ -179,15 +118,15 @@ namespace Test.ValidatorTests
             var validationContext = new ValidationContext(basicDetails, null, null);
             Assert.That(() => Validator.ValidateObject(basicDetails, validationContext, true), Throws.Nothing);
         }
-
+        
         [Test]
-        public void ItShouldAcceptSurnameWithNumbers()
+        public void ItShouldRejectSurnameWhenEmpty()
         {
             var basicDetails = new ApplicantBasicDetails
             {
                 Forename = "John",
                 MiddleNames = "Michael",
-                Surname = "Smith789",
+                Surname = "",
                 Gender = "MALE",
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
@@ -196,26 +135,8 @@ namespace Test.ValidatorTests
             };
 
             var validationContext = new ValidationContext(basicDetails, null, null);
-            Assert.That(() => Validator.ValidateObject(basicDetails, validationContext, true), Throws.Nothing);
-        }
-
-        [Test]
-        public void ItShouldAcceptSurnameWithSpecialCharacters()
-        {
-            var basicDetails = new ApplicantBasicDetails
-            {
-                Forename = "John",
-                MiddleNames = "Michael",
-                Surname = "Smith%",
-                Gender = "MALE",
-                Title = "Mr",
-                DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
-                ApplicantType = "PRIMARY"
-            };
-
-            var validationContext = new ValidationContext(basicDetails, null, null);
-            Assert.That(() => Validator.ValidateObject(basicDetails, validationContext, true), Throws.Nothing);
+            var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(basicDetails, validationContext, true));
+            Assert.That(exception.Message, Does.Contain("Surname"));
         }
 
         [Test]
@@ -237,6 +158,7 @@ namespace Test.ValidatorTests
             var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(basicDetails, validationContext, true));
             Assert.That(exception.Message, Does.Contain("Surname"));
         }
+        
 
         [TestCase("Jean-Pierre", "Marie-Claire", "O'Connor")]
         [TestCase("Mary", "Anne Louise", "Smith-Jones")]

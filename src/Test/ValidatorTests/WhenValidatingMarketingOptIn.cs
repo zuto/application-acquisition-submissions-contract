@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace Test.ValidatorTests
 {
-    class WhenValidatingApplicantMarketingOptIn
+    class WhenValidatingMarketingOptIn
     {
         [Test]
         public void ItShouldAcceptAllNullValues()

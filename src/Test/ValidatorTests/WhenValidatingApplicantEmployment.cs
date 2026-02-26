@@ -155,66 +155,9 @@ namespace Test.ValidatorTests.ApplicantEmploymentTests
             Assert.That(exception.Message, Does.Contain("EmploymentStatus"));
         }
 
-        // Telephone field tests (RegularExpression - TelephoneNumber: 0\d{1,19})
-        [TestCase("01234567890")]
-        [TestCase("0123")]
-        [TestCase("02071838750")]
-        [TestCase("07")]
-        [TestCase("0" + "1234567890123456789")] // Exactly 20 digits (0 + 19 digits)
-        public void ItShouldAcceptValidTelephone(string telephone)
-        {
-            var applicantEmployment = new ApplicantEmployment
-            {
-                Telephone = telephone,
-                EmploymentStatus = "UNEMPLOYED"
-            };
-
-            var validationContext = new ValidationContext(applicantEmployment, null, null);
-            Assert.That(() => Validator.ValidateObject(applicantEmployment, validationContext, true), Throws.Nothing);
-        }
-        
-        [TestCase("123456789")] // Missing leading 0
-        [TestCase("0")] // too short
-        [TestCase("12345678901234567890")] // too long
-        public void ItShouldRejectInvalidTelephone(string invalidTelephone)
-        {
-            var applicantEmployment = new ApplicantEmployment
-            {
-                Telephone = invalidTelephone,
-                EmploymentStatus = "UNEMPLOYED"
-            };
-
-            var validationContext = new ValidationContext(applicantEmployment, null, null);
-            var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(applicantEmployment, validationContext, true));
-            Assert.That(exception.Message, Does.Contain("Telephone"));
-        }
-
-        [Test]
-        public void ItShouldRejectTelephoneWithLetters()
-        {
-            var applicantEmployment = new ApplicantEmployment
-            {
-                Telephone = "0123ABC456",
-                EmploymentStatus = "UNEMPLOYED"
-            };
-
-            var validationContext = new ValidationContext(applicantEmployment, null, null);
-            var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(applicantEmployment, validationContext, true));
-            Assert.That(exception.Message, Does.Contain("Telephone"));
-        }
-
-        [Test]
-        public void ItShouldAcceptNullTelephone()
-        {
-            var applicantEmployment = new ApplicantEmployment
-            {
-                Telephone = null,
-                EmploymentStatus = "UNEMPLOYED"
-            };
-
-            var validationContext = new ValidationContext(applicantEmployment, null, null);
-            Assert.That(() => Validator.ValidateObject(applicantEmployment, validationContext, true), Throws.Nothing);
-        }
+        // Telephone field tests - moved to WhenValidatingPhoneNumber.cs
+        // ApplicantEmployment.Telephone is a string field that validates phone numbers
+        // For comprehensive phone number validation tests, see WhenValidatingPhoneNumber.cs
 
         // Years field tests (IntegerRange 0-100)
         [TestCase(0)]

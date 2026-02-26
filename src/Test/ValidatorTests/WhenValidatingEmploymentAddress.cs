@@ -52,6 +52,19 @@ namespace Test.ValidatorTests.EmploymentAddressTests
         }
 
         [Test]
+        public void ItShouldRejectNameNumberWhenEmpty()
+        {
+            var employmentAddress = new EmploymentAddress
+            {
+                NameNumber = ""
+            };
+
+            var validationContext = new ValidationContext(employmentAddress, null, null);
+            var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(employmentAddress, validationContext, true));
+            Assert.That(exception.Message, Does.Contain("NameNumber"));
+        }
+
+        [Test]
         public void ItShouldAcceptNullNameNumber()
         {
             var employmentAddress = new EmploymentAddress
@@ -84,6 +97,19 @@ namespace Test.ValidatorTests.EmploymentAddressTests
             var employmentAddress = new EmploymentAddress
             {
                 Street = new string('A', 101)
+            };
+
+            var validationContext = new ValidationContext(employmentAddress, null, null);
+            var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(employmentAddress, validationContext, true));
+            Assert.That(exception.Message, Does.Contain("Street"));
+        }
+
+        [Test]
+        public void ItShouldRejectStreetWhenEmpty()
+        {
+            var employmentAddress = new EmploymentAddress
+            {
+                Street = ""
             };
 
             var validationContext = new ValidationContext(employmentAddress, null, null);
@@ -132,6 +158,19 @@ namespace Test.ValidatorTests.EmploymentAddressTests
         }
 
         [Test]
+        public void ItShouldRejectTownCityWhenEmpty()
+        {
+            var employmentAddress = new EmploymentAddress
+            {
+                TownCity = ""
+            };
+
+            var validationContext = new ValidationContext(employmentAddress, null, null);
+            var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(employmentAddress, validationContext, true));
+            Assert.That(exception.Message, Does.Contain("TownCity"));
+        }
+
+        [Test]
         public void ItShouldAcceptNullTownCity()
         {
             var employmentAddress = new EmploymentAddress
@@ -164,6 +203,19 @@ namespace Test.ValidatorTests.EmploymentAddressTests
             var employmentAddress = new EmploymentAddress
             {
                 County = new string('A', 101)
+            };
+
+            var validationContext = new ValidationContext(employmentAddress, null, null);
+            var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(employmentAddress, validationContext, true));
+            Assert.That(exception.Message, Does.Contain("County"));
+        }
+
+        [Test]
+        public void ItShouldRejectCountyWhenEmpty()
+        {
+            var employmentAddress = new EmploymentAddress
+            {
+                County = ""
             };
 
             var validationContext = new ValidationContext(employmentAddress, null, null);
@@ -205,6 +257,19 @@ namespace Test.ValidatorTests.EmploymentAddressTests
             var employmentAddress = new EmploymentAddress
             {
                 PostCode = new string('A', 21)
+            };
+
+            var validationContext = new ValidationContext(employmentAddress, null, null);
+            var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(employmentAddress, validationContext, true));
+            Assert.That(exception.Message, Does.Contain("PostCode"));
+        }
+
+        [Test]
+        public void ItShouldRejectPostCodeWhenEmpty()
+        {
+            var employmentAddress = new EmploymentAddress
+            {
+                PostCode = ""
             };
 
             var validationContext = new ValidationContext(employmentAddress, null, null);

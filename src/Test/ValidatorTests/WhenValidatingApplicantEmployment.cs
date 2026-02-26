@@ -60,6 +60,20 @@ namespace Test.ValidatorTests.ApplicantEmploymentTests
             Assert.That(exception.Message, Does.Contain("Occupation"));
         }
 
+        [Test]
+        public void ItShouldRejectOccupationWhenEmpty()
+        {
+            var applicantEmployment = new ApplicantEmployment
+            {
+                Occupation = "",
+                EmploymentStatus = "UNEMPLOYED"
+            };
+
+            var validationContext = new ValidationContext(applicantEmployment, null, null);
+            var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(applicantEmployment, validationContext, true));
+            Assert.That(exception.Message, Does.Contain("Occupation"));
+        }
+
         // EmployerName field tests (StringLengthRange 1-100)
         [TestCase("Acme Corporation")]
         [TestCase("Tech Solutions Ltd")]
@@ -83,6 +97,20 @@ namespace Test.ValidatorTests.ApplicantEmploymentTests
             var applicantEmployment = new ApplicantEmployment
             {
                 EmployerName = EmployerNameOver100,
+                EmploymentStatus = "UNEMPLOYED"
+            };
+
+            var validationContext = new ValidationContext(applicantEmployment, null, null);
+            var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(applicantEmployment, validationContext, true));
+            Assert.That(exception.Message, Does.Contain("EmployerName"));
+        }
+
+        [Test]
+        public void ItShouldRejectEmployerNameWhenEmpty()
+        {
+            var applicantEmployment = new ApplicantEmployment
+            {
+                EmployerName = "",
                 EmploymentStatus = "UNEMPLOYED"
             };
 
@@ -132,6 +160,7 @@ namespace Test.ValidatorTests.ApplicantEmploymentTests
         [TestCase("0123")]
         [TestCase("02071838750")]
         [TestCase("07")]
+        [TestCase("0" + "1234567890123456789")] // Exactly 20 digits (0 + 19 digits)
         public void ItShouldAcceptValidTelephone(string telephone)
         {
             var applicantEmployment = new ApplicantEmployment
@@ -172,6 +201,19 @@ namespace Test.ValidatorTests.ApplicantEmploymentTests
             var validationContext = new ValidationContext(applicantEmployment, null, null);
             var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(applicantEmployment, validationContext, true));
             Assert.That(exception.Message, Does.Contain("Telephone"));
+        }
+
+        [Test]
+        public void ItShouldAcceptNullTelephone()
+        {
+            var applicantEmployment = new ApplicantEmployment
+            {
+                Telephone = null,
+                EmploymentStatus = "UNEMPLOYED"
+            };
+
+            var validationContext = new ValidationContext(applicantEmployment, null, null);
+            Assert.That(() => Validator.ValidateObject(applicantEmployment, validationContext, true), Throws.Nothing);
         }
 
         // Years field tests (IntegerRange 0-100)
@@ -307,6 +349,19 @@ namespace Test.ValidatorTests.ApplicantEmploymentTests
             var validationContext = new ValidationContext(applicantEmployment, null, null);
             var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(applicantEmployment, validationContext, true));
             Assert.That(exception.Message, Does.Contain("NetMonthlyIncome"));
+        }
+
+        [Test]
+        public void ItShouldAcceptNullNetMonthlyIncome()
+        {
+            var applicantEmployment = new ApplicantEmployment
+            {
+                NetMonthlyIncome = null,
+                EmploymentStatus = "UNEMPLOYED"
+            };
+
+            var validationContext = new ValidationContext(applicantEmployment, null, null);
+            Assert.That(() => Validator.ValidateObject(applicantEmployment, validationContext, true), Throws.Nothing);
         }
 
         // EmploymentAddress field tests (ValidateObject, optional)

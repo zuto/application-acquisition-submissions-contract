@@ -6,7 +6,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
     public class PhoneNumber
     {   
         [Required]
-        [AllowedValues(new[]{ "HOME", "MOBILE" })]
+        [AllowedValuesValidation(new[]{ "HOME", "MOBILE" })]
         public string Type { get; set; }
 
 

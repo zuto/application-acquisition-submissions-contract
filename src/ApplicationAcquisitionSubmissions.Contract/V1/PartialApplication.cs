@@ -20,7 +20,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         [StringLengthRange(1, 255)]
         public string Campaign { get; set; }
 
-        [AllowedValues(new[] { null, "Mr", "Miss", "Mrs", "Ms" })]
+        [AllowedValuesValidation(new[] { null, "Mr", "Miss", "Mrs", "Ms" })]
         public string Title { get; set; }
 
         [StringLengthRange(1, 50)]
@@ -32,7 +32,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         [StringLengthRange(1, 50)]
         public string Surname { get; set; }
 
-        [AllowedValues(new[] { null, "MALE", "FEMALE" })]
+        [AllowedValuesValidation(new[] { null, "MALE", "FEMALE" })]
         public string Gender { get; set; }
 
         public DateTime? DateOfBirth { get; set; }

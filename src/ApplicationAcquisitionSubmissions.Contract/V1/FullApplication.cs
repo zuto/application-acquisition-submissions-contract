@@ -26,7 +26,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         public ApplicationDetails ApplicationDetails { get; set; }
 
         [Required]
-        [AllowedValues(new[] { "APPLICATION", "LEAD", "SHORTLEAD", "" })]
+        [AllowedValuesValidation(new[] { "APPLICATION", "LEAD", "SHORTLEAD", "" })]
         public string ApplicationType { get; set; }
 
         [ArrayCount(max: 2, min: 0)]

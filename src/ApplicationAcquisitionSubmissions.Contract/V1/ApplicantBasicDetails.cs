@@ -20,6 +20,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         [StringLengthRange(1, 50)]
         public string Surname { get; set; }
 
+        [MinimumAge(18)]
         public DateTime DateOfBirth { get; set; }
 
         /// <summary>

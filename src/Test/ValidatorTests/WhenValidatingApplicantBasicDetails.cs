@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using ApplicationAcquisitionSubmissions.Contract.V1;
 using NUnit.Framework;
 
@@ -376,6 +378,46 @@ namespace Test.ValidatorTests
             var validationContext = new ValidationContext(basicDetails, null, null);
             var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(basicDetails, validationContext, true));
             Assert.That(exception.Message, Does.Contain("ApplicantType"));
+        }
+        
+        // DOB
+        [Test]
+        public void ItShouldRejectWhenApplicantIsUnder18yoDOB()
+        {
+            var basicDetails = new ApplicantBasicDetails
+            {
+                Forename = "John",
+                MiddleNames = "Michael",
+                Surname = "Smith",
+                Gender = "MALE",
+                Title = "Mr",
+                DateOfBirth = DateTime.Today.AddYears(-17),
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                ApplicantType = "PRIMARY"
+            };
+
+            var validationContext = new ValidationContext(basicDetails, null, null);
+            var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(basicDetails, validationContext, true));
+            Assert.That(exception.Message, Does.Contain($"Applicant must be at least 18 years old."));
+        }
+        
+        [Test]
+        public void ItShouldAcceptWhenApplicantIs18yoDOB()
+        {
+            var basicDetails = new ApplicantBasicDetails
+            {
+                Forename = "John",
+                MiddleNames = "Michael",
+                Surname = "Smith",
+                Gender = "MALE",
+                Title = "Mr",
+                DateOfBirth = DateTime.Today.AddYears(-18),
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                ApplicantType = "PRIMARY"
+            };
+
+            var validationContext = new ValidationContext(basicDetails, null, null);
+            Assert.That(() => Validator.ValidateObject(basicDetails, validationContext, true), Throws.Nothing);
         }
     }
 }

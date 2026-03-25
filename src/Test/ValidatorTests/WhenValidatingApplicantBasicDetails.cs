@@ -257,6 +257,7 @@ namespace Test.ValidatorTests
         [TestCase("J.R.R. Tolkien", "J.R.R. Tolkien", "J.R.R. Tolkien")]
         [TestCase("J. R. R. Tolkien", "J. R. R. Tolkien", "J. R. R. Tolkien")]
         [TestCase("Lewis Jr.", "Lewis Jr.", "Lewis Jr.")]
+        [TestCase("Aaron", "Callum", "Booths")]
         public void ItShouldAcceptNamesWithValidCharacters(string forename, string middleNames, string surname)
         {
             var basicDetails = new ApplicantBasicDetails

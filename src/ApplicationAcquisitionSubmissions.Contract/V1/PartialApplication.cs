@@ -6,6 +6,9 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
 {
     public class PartialApplication
     {
+        private string _forename;
+        private string _middlenames;
+        private string _surname;
         public Origin Origin { get; set; }
 
         [RegularExpression(Regexes.AlphaNumeric)]
@@ -23,14 +26,33 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         [AllowedValuesValidation(new[] { null, "Mr", "Miss", "Mrs", "Ms" })]
         public string Title { get; set; }
 
+        [RegularExpression(Regexes.ApplicantNameRegex)]
         [StringLengthRange(1, 50)]
-        public string Forename { get; set; }
+        public string Forename
+        {
+            get => _forename;
+            set => _forename = value == null
+                ? null
+                : System.Text.RegularExpressions.Regex.Replace(value.Trim(), @"\s+", " ");
+        }
 
+        [RegularExpression(Regexes.ApplicantNameRegex)]
         [StringLengthRange(1, 100)]
-        public string MiddleNames { get; set; }
+        public string MiddleNames {
+            get => _middlenames;
+            set => _middlenames = value == null
+                ? null
+                : System.Text.RegularExpressions.Regex.Replace(value.Trim(), @"\s+", " ");
+        }
 
+        [RegularExpression(Regexes.ApplicantNameRegex)]
         [StringLengthRange(1, 50)]
-        public string Surname { get; set; }
+        public string Surname {
+            get => _surname;
+            set => _surname = value == null
+                ? null
+                : System.Text.RegularExpressions.Regex.Replace(value.Trim(), @"\s+", " ");
+        }
 
         [AllowedValuesValidation(new[] { null, "MALE", "FEMALE" })]
         public string Gender { get; set; }

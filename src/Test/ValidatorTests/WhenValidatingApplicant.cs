@@ -17,7 +17,7 @@ namespace Test.ValidatorTests.ApplicantTests
                 Gender = "MALE",
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "01611234567" } },
                 ApplicantType = "PRIMARY"
             };
         }
@@ -106,7 +106,7 @@ namespace Test.ValidatorTests.ApplicantTests
                     Gender = "INVALID_GENDER", // Invalid gender
                     Title = "Mr",
                     DateOfBirth = new DateTime(1990, 1, 1),
-                    PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                    PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "01611234567" } },
                     ApplicantType = "PRIMARY"
                 },
                 MarketingOptIn = null,

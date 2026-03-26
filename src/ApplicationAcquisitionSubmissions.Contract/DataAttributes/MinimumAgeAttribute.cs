@@ -15,7 +15,12 @@ namespace ApplicationAcquisitionSubmissions.Contract.DataAttributes
         
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var dateOfBirth = (DateTime)value;
+            if (value == null)
+                return ValidationResult.Success;
+            
+            if (value is not DateTime dateOfBirth)
+                return new ValidationResult(ErrorMessage, new[] { validationContext.MemberName });
+       
             var today = DateTime.Today;
             var age = today.Year - dateOfBirth.Year;
 

@@ -6,32 +6,6 @@ namespace Test.ValidatorTests.PhoneNumberTests
 {
     class WhenValidatingPhoneNumber
     {
-        [Test]
-        public void ItShouldAcceptValidHomePhoneNumber()
-        {
-            var phoneNumber = new PhoneNumber
-            {
-                Type = "HOME",
-                Value = "01234567890"
-            };
-
-            var validationContext = new ValidationContext(phoneNumber, null, null);
-            Assert.That(() => Validator.ValidateObject(phoneNumber, validationContext, true), Throws.Nothing);
-        }
-
-        [Test]
-        public void ItShouldAcceptValidMobilePhoneNumber()
-        {
-            var phoneNumber = new PhoneNumber
-            {
-                Type = "MOBILE",
-                Value = "07123456789"
-            };
-
-            var validationContext = new ValidationContext(phoneNumber, null, null);
-            Assert.That(() => Validator.ValidateObject(phoneNumber, validationContext, true), Throws.Nothing);
-        }
-
         // Type field tests (AllowedValuesValidation: HOME, MOBILE)
         [TestCase("HOME")]
         [TestCase("MOBILE")]
@@ -40,7 +14,7 @@ namespace Test.ValidatorTests.PhoneNumberTests
             var phoneNumber = new PhoneNumber
             {
                 Type = type,
-                Value = "01234567890"
+                Value = "07123456789"
             };
 
             var validationContext = new ValidationContext(phoneNumber, null, null);
@@ -58,7 +32,7 @@ namespace Test.ValidatorTests.PhoneNumberTests
 
             var validationContext = new ValidationContext(phoneNumber, null, null);
             var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(phoneNumber, validationContext, true));
-            Assert.That(exception.Message, Does.Contain("Type"));
+            Assert.That(exception.Message, Does.Contain("PhoneNumber type contained 'WORK', but should contain a value from this list: HOME, MOBILE"));
         }
 
         [Test]
@@ -81,25 +55,32 @@ namespace Test.ValidatorTests.PhoneNumberTests
             var phoneNumber = new PhoneNumber
             {
                 Type = "",
-                Value = "01234567890"
+                Value = "07123456789"
             };
 
             var validationContext = new ValidationContext(phoneNumber, null, null);
             var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(phoneNumber, validationContext, true));
             Assert.That(exception.Message, Does.Contain("Type"));
         }
-
-        // Value field tests (RegularExpression - TelephoneNumber: 0\d{1,19})
-        [TestCase("01234567890")]
-        [TestCase("0123")]
-        [TestCase("02071838750")]
-        [TestCase("07")]
-        [TestCase("0" + "1234567890123456789")] // Exactly 20 digits (0 + 19 digits)
-        public void ItShouldAcceptValidValue(string value)
+        
+        // PhoneNumber value tests
+        [TestCase("07123456789", "HOME")] // mobile
+        [TestCase("00447123456789", "HOME")] // mobile
+        [TestCase("01611234567", "HOME")] // landline
+        [TestCase("02012345678", "HOME")] // landline
+        [TestCase("00441611234567", "HOME")] // landline
+        [TestCase("00442012345678", "HOME")] // landline
+        [TestCase("07123456789", "MOBILE")] // mobile
+        [TestCase("00447123456789", "MOBILE")] // mobile
+        [TestCase("01611234567", "MOBILE")] // landline
+        [TestCase("02012345678", "MOBILE")] // landline
+        [TestCase("00441611234567", "MOBILE")] // landline
+        [TestCase("00442012345678", "MOBILE")] // landline
+        public void ItShouldAcceptValidValue(string value, string type)
         {
             var phoneNumber = new PhoneNumber
             {
-                Type = "MOBILE",
+                Type = type,
                 Value = value
             };
 
@@ -107,42 +88,51 @@ namespace Test.ValidatorTests.PhoneNumberTests
             Assert.That(() => Validator.ValidateObject(phoneNumber, validationContext, true), Throws.Nothing);
         }
 
-        [TestCase("123456789")] // Missing leading 0
-        [TestCase("0")] // Too short
-        [TestCase("12345678901234567890")] // Too long
-        public void ItShouldRejectInvalidValue(string invalidValue)
+        [TestCase("7810555444", "MOBILE")] // Missing leading 0
+        [TestCase("0", "MOBILE")] // Too short
+        [TestCase("07", "MOBILE")] // Too short
+        [TestCase("0123", "MOBILE")] // Too short
+        [TestCase("004407810555444544544544544", "MOBILE")] // Too long
+        [TestCase("7810555444", "HOME")] // Missing leading 0
+        [TestCase("0", "HOME")] // Too short
+        [TestCase("07", "HOME")] // Too short
+        [TestCase("0123", "HOME")] // Too short
+        [TestCase("004407810555444544544544544", "HOME")] // Too long
+        public void ItShouldRejectInvalidValue(string invalidValue, string type)
         {
             var phoneNumber = new PhoneNumber
             {
-                Type = "MOBILE",
+                Type = type,
                 Value = invalidValue
             };
 
             var validationContext = new ValidationContext(phoneNumber, null, null);
             var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(phoneNumber, validationContext, true));
-            Assert.That(exception.Message, Does.Contain("Value"));
+            Assert.That(exception.Message, Does.Contain($"PhoneNumber {type} should match"));
         }
 
-        [Test]
-        public void ItShouldRejectValueWithLetters()
+        [TestCase("HOME")]
+        [TestCase("MOBILE")]
+        public void ItShouldRejectValueWithLetters(string type)
         {
             var phoneNumber = new PhoneNumber
             {
-                Type = "MOBILE",
+                Type = type,
                 Value = "0123ABC456"
             };
 
             var validationContext = new ValidationContext(phoneNumber, null, null);
             var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(phoneNumber, validationContext, true));
-            Assert.That(exception.Message, Does.Contain("Value"));
+            Assert.That(exception.Message, Does.Contain($"PhoneNumber {type} should match"));
         }
 
-        [Test]
-        public void ItShouldRejectNullValue()
+        [TestCase("HOME")]
+        [TestCase("MOBILE")]
+        public void ItShouldRejectNullValue(string type)
         {
             var phoneNumber = new PhoneNumber
             {
-                Type = "MOBILE",
+                Type = type,
                 Value = null
             };
 
@@ -151,31 +141,19 @@ namespace Test.ValidatorTests.PhoneNumberTests
             Assert.That(exception.Message, Does.Contain("Value"));
         }
 
-        [Test]
-        public void ItShouldRejectEmptyValue()
+        [TestCase("HOME")]
+        [TestCase("MOBILE")]
+        public void ItShouldRejectEmptyValue(string type)
         {
             var phoneNumber = new PhoneNumber
             {
-                Type = "MOBILE",
+                Type = type,
                 Value = ""
             };
 
             var validationContext = new ValidationContext(phoneNumber, null, null);
             var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(phoneNumber, validationContext, true));
             Assert.That(exception.Message, Does.Contain("Value"));
-        }
-
-        [Test]
-        public void ItShouldAcceptCompletePhoneNumber()
-        {
-            var phoneNumber = new PhoneNumber
-            {
-                Type = "MOBILE",
-                Value = "07700900123"
-            };
-
-            var validationContext = new ValidationContext(phoneNumber, null, null);
-            Assert.That(() => Validator.ValidateObject(phoneNumber, validationContext, true), Throws.Nothing);
         }
     }
 }

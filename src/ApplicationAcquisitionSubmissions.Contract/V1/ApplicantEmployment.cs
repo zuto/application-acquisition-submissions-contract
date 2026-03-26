@@ -14,7 +14,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         [AllowedValuesValidation(new[] { "AGENCY", "FULL TIME PERMANENT", "PART TIME", "RETIRED", "SELF EMPLOYED", "STUDENT", "SUB CONTRACT", "CARER", "DISABILITY", "TEMPORARY", "UNEMPLOYED" })]
         public string EmploymentStatus { get; set; }
 
-        [RegularExpression(Regexes.TelephoneNumber)]
+        [RegularExpression(Regexes.UkCallableNumber)]
         public string Telephone { get; set; }
 
         [IntegerRange(0, 100)]

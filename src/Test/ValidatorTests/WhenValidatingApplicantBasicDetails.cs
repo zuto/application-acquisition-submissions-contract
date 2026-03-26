@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using ApplicationAcquisitionSubmissions.Contract.V1;
 using NUnit.Framework;
 
@@ -19,7 +21,7 @@ namespace Test.ValidatorTests
                 Gender = "MALE",
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
                 ApplicantType = "PRIMARY"
             };
 
@@ -40,7 +42,7 @@ namespace Test.ValidatorTests
                 Gender = "MALE",
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
                 ApplicantType = "PRIMARY"
             };
 
@@ -76,7 +78,7 @@ namespace Test.ValidatorTests
                 Gender = "MALE",
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
                 ApplicantType = "PRIMARY"
             };
 
@@ -97,7 +99,7 @@ namespace Test.ValidatorTests
                 Gender = "MALE",
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "01611234567" } },
                 ApplicantType = "PRIMARY"
             };
 
@@ -118,7 +120,7 @@ namespace Test.ValidatorTests
                 Gender = "MALE",
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
                 ApplicantType = "PRIMARY"
             };
 
@@ -154,7 +156,7 @@ namespace Test.ValidatorTests
                 Gender = "MALE",
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
                 ApplicantType = "PRIMARY"
             };
 
@@ -175,7 +177,7 @@ namespace Test.ValidatorTests
                 Gender = "MALE",
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
                 ApplicantType = "PRIMARY"
             };
 
@@ -195,7 +197,7 @@ namespace Test.ValidatorTests
                 Gender = "MALE",
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
                 ApplicantType = "PRIMARY"
             };
 
@@ -231,7 +233,7 @@ namespace Test.ValidatorTests
                 Gender = "MALE",
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "01611234567" } },
                 ApplicantType = "PRIMARY"
             };
 
@@ -268,7 +270,7 @@ namespace Test.ValidatorTests
                 Gender = "MALE",
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
                 ApplicantType = "PRIMARY"
             };
 
@@ -289,7 +291,7 @@ namespace Test.ValidatorTests
                 Gender = gender,
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
                 ApplicantType = "PRIMARY"
             };
 
@@ -311,7 +313,7 @@ namespace Test.ValidatorTests
                 Gender = gender,
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
                 ApplicantType = "PRIMARY"
             };
 
@@ -331,7 +333,7 @@ namespace Test.ValidatorTests
                 Gender = null,
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
                 ApplicantType = "PRIMARY"
             };
 
@@ -355,7 +357,7 @@ namespace Test.ValidatorTests
                 Gender = "MALE",
                 Title = title,
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
                 ApplicantType = "PRIMARY"
             };
 
@@ -379,7 +381,7 @@ namespace Test.ValidatorTests
                 Gender = "MALE",
                 Title = title,
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
                 ApplicantType = "PRIMARY"
             };
 
@@ -399,7 +401,7 @@ namespace Test.ValidatorTests
                 Gender = "MALE",
                 Title = null,
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
                 ApplicantType = "PRIMARY"
             };
 
@@ -421,7 +423,7 @@ namespace Test.ValidatorTests
                 Gender = "MALE",
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
                 ApplicantType = applicantType
             };
 
@@ -443,7 +445,7 @@ namespace Test.ValidatorTests
                 Gender = "MALE",
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
                 ApplicantType = applicantType
             };
 
@@ -463,13 +465,53 @@ namespace Test.ValidatorTests
                 Gender = "MALE",
                 Title = "Mr",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" } },
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
                 ApplicantType = null
             };
 
             var validationContext = new ValidationContext(basicDetails, null, null);
             var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(basicDetails, validationContext, true));
             Assert.That(exception.Message, Does.Contain("ApplicantType"));
+        }
+        
+        // DOB
+        [Test]
+        public void ItShouldRejectWhenApplicantIsUnder18yoDOB()
+        {
+            var basicDetails = new ApplicantBasicDetails
+            {
+                Forename = "John",
+                MiddleNames = "Michael",
+                Surname = "Smith",
+                Gender = "MALE",
+                Title = "Mr",
+                DateOfBirth = DateTime.Today.AddYears(-17),
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
+                ApplicantType = "PRIMARY"
+            };
+
+            var validationContext = new ValidationContext(basicDetails, null, null);
+            var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(basicDetails, validationContext, true));
+            Assert.That(exception.Message, Does.Contain($"Applicant must be at least 18 years old."));
+        }
+        
+        [Test]
+        public void ItShouldAcceptWhenApplicantIs18yoDOB()
+        {
+            var basicDetails = new ApplicantBasicDetails
+            {
+                Forename = "John",
+                MiddleNames = "Michael",
+                Surname = "Smith",
+                Gender = "MALE",
+                Title = "Mr",
+                DateOfBirth = DateTime.Today.AddYears(-18),
+                PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "07123456789" } },
+                ApplicantType = "PRIMARY"
+            };
+
+            var validationContext = new ValidationContext(basicDetails, null, null);
+            Assert.That(() => Validator.ValidateObject(basicDetails, validationContext, true), Throws.Nothing);
         }
     }
 }

@@ -57,6 +57,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         [AllowedValuesValidation(new[] { null, "MALE", "FEMALE" })]
         public string Gender { get; set; }
 
+        [MinimumAge(18)]
         public DateTime? DateOfBirth { get; set; }
 
         [ValidateObject(failOnNull: false)]

@@ -44,6 +44,7 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
                 : System.Text.RegularExpressions.Regex.Replace(value.Trim(), @"\s+", " ");
         }
 
+        [MinimumAge(18)]
         public DateTime DateOfBirth { get; set; }
 
         /// <summary>

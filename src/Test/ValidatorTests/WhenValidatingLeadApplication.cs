@@ -18,7 +18,7 @@ namespace Test.ValidatorTests.LeadApplicationTests
                     Surname = surname,
                     Gender = gender,
                     ApplicantType = "PRIMARY",
-                    PhoneNumbers = new[] { new PhoneNumber { Value = "01234567890", Type = "MOBILE" } }
+                    PhoneNumbers = new[] { new PhoneNumber { Value = "07123456789", Type = "MOBILE" } }
                 },
                 ApplicantAddress = new ApplicantAddress[] { },
                 ApplicantEmployment = new ApplicantEmployment[] { }

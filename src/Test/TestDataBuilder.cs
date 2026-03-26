@@ -30,7 +30,7 @@ namespace Test
                 {
                     Gender = "MALE",
                     Title = "Mr",
-                    PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "0123" }, },
+                    PhoneNumbers = new[] { new PhoneNumber { Type = "HOME", Value = "01611234567" }, },
                     ApplicantType = "PRIMARY"
                 },
                 ApplicantAddress = new ApplicantAddress[0],

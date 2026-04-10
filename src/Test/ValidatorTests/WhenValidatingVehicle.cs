@@ -456,5 +456,37 @@ namespace Test.ValidatorTests
             var validationContext = new ValidationContext(vehicle, null, null);
             Assert.That(() => Validator.ValidateObject(vehicle, validationContext, true), Throws.Nothing);
         }
+        
+        [TestCase("STOCK123")]
+        [TestCase(null)]
+        public void ItShouldAcceptValidStockId(string stockId)
+        {
+            var vehicle = ValidVehicle();
+            vehicle.StockId = stockId;
+
+            var validationContext = new ValidationContext(vehicle, null, null);
+            Assert.That(() => Validator.ValidateObject(vehicle, validationContext, true), Throws.Nothing);
+        }
+
+        [TestCase("")]
+        [TestCase("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")]
+        public void ItShouldRejectInvalidStockId(string stockId)
+        {
+            var vehicle = ValidVehicle();
+            vehicle.StockId = stockId;
+
+            var validationContext = new ValidationContext(vehicle, null, null);
+            var exception = Assert.Throws<ValidationException>(() => Validator.ValidateObject(vehicle, validationContext, true));
+            Assert.That(exception.Message, Does.Contain("StockId"));
+        }
+
+        private static Vehicle ValidVehicle() => new Vehicle
+        {
+            Registration = "AB12 CDE",
+            Mileage = 50000,
+            Make = "Toyota",
+            Model = "Corolla",
+            VehicleStatus = "DESIRED"
+        };
     }
 }

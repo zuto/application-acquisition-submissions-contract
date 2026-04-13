@@ -35,5 +35,8 @@ namespace ApplicationAcquisitionSubmissions.Contract.V1
         public Dealer Dealer { get; set; }
 
         public Advert Advert { get; set; }
+
+        [StringLengthRange(1, 100)]
+        public string StockId { get; set; }
     }
 }
